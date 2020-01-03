@@ -1,0 +1,14 @@
+server:
+  port: 12000
+spring:
+  application:
+    name: zuul-gateway
+eureka:
+  other-server:
+    port: 11000
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:${eureka.other-server.port}/eureka
+#路径前缀
+zuul:
+  prefix: /gateway

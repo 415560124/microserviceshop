@@ -1,0 +1,59 @@
+server:
+  port: 8000
+
+spring:
+  application:
+    name: item-service
+  datasource:
+    url: jdbc:mysql://localhost:3306/leyou?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+    username: root
+    password: root
+    dbcp2:
+      #最大等待连接数
+      max-idle: 100
+      #最大连接活动数
+      max-total: 500
+      #最大等待毫秒数
+      max-wait-millis:  10000
+      #数据库连接池初始化连接数
+      initial-size: 100
+  devtools:
+    restart:
+      enabled: true
+      #http请求日志
+  http:
+    log-request-details: true
+  #sql日志
+
+
+pagehelper:
+  helper-dialect: mysql
+  #当启用合理化时，如果pageNum>pageSize,默认会查询最后一页的数据。禁用合理化后，当pageNum>pageSize会返回空数据
+  reasonable: false
+  #自动分页的配置，依据的是入参，如果参数中有pageNum，pageSize分页参数，则会自动分页
+  support-methods-arguments: false
+  params: count=countSql
+
+eureka:
+  other-server:
+    port: 11000
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:${eureka.other-server.port}/eureka
+  instance:
+    lease-expiration-duration-in-seconds: 10 #10秒不发送就过期
+    lease-renewal-interval-in-seconds: 5 #5秒发送一次心跳
+
+
+
+mybatis-plus:
+  configuration:
+    cache-enabled: true #配置的缓存的全局开关
+    lazyLoadingEnabled: true #延时加载的开关
+    multipleResultSetsEnabled: true #开启的话，延时加载一个属性时会加载该对象全部属性，否则按需加载属性
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #打印sql语句,调试用
+logging:
+  config: classpath:logback-spring.xml
+  level.org.mybatis: debug
+  level.com.rhy.item.mapper.*: debug
+  name: ${spring.application.name}.log

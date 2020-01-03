@@ -1,0 +1,25 @@
+#端口
+server:
+  port: 11000
+
+#服务名
+spring:
+  application:
+    name: eureka-server-1
+
+
+eureka:
+  other-server:
+    port: 11000
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:${eureka.other-server.port}/eureka
+    #把自己注册到服务列表
+    register-with-eureka: true
+    #拉取eureka服务列表
+    fetch-registry: true
+  server:
+    #自我保护
+    enable-self-preservation: true
+    #每隔5秒钟，进行一次服务列表的清理
+    eviction-interval-timer-in-ms: 5000
