@@ -36,7 +36,7 @@
         <commons-dbcp2.version>2.7.0</commons-dbcp2.version>
         <common.version>0.0.1-SNAPSHOT</common.version>
         <item-common.version>0.0.1-SNAPSHOT</item-common.version>
-        <mysql-connector.version>8.0.18</mysql-connector.version>
+        <mysql-connector.version>8.0.28</mysql-connector.version>
         <mybatis-plus.version>3.3.0</mybatis-plus.version>
         <lombok.version>1.18.10</lombok.version>
     </properties>
